@@ -1,5 +1,3 @@
-test change for commit
-
 CONTENTS OF THIS FILE
 ---------------------
 
