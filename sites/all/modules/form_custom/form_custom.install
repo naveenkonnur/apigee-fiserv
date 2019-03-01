@@ -1,0 +1,55 @@
+<?php
+/**
+ * Sets up the database schema for the new form data
+ * Implements hook_schema()
+ */
+function form_custom_schema() {
+	$schema = array();
+	
+	// Our table is an array with fields and properties
+	$schema['form_custom_data'] = array(
+		'description' => t('A table for holding the my_module data!'),
+		'fields' => array(
+			'person_id' => array(
+				'description' => t('Auto increment of the person ID'),
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+			),
+			'first_name' => array(
+				'description' => t('Person\'s first name.'),
+				'type' => 'varchar',
+				'length' => 64,
+				'not null' => TRUE,
+			),
+			'middle_name' => array(
+				'description' => t('Person\'s middle name.'),
+				'type' => 'varchar',
+				'length' => 64,
+				'not null' => TRUE,
+			),
+			'last_name' => array(
+				'description' => t('Person\'s last name'),
+				'type' => 'varchar',
+				'length' => 64,
+				'not null' => TRUE
+			),
+		),
+		'primary_key' => array('person_id'),
+	);
+	return $schema;
+}
+ 
+/**
+ * Implements hook_install()
+ */
+function my_module_install() {
+	// Nothing to put in here for this module
+}
+ 
+/**
+ * Implements hook_uninstall()
+ */
+function my_module_uninstall() {
+	// Anything defined in hook_schema() will be automatically removed on uninstall
+}

@@ -1,0 +1,55 @@
+<?php
+
+function custom_form_schema() {
+  $schema = array();
+
+  $schema['custom_form_one'] = array(
+    // Example (partial) specification for table "node".
+    'description' => 'The base table for nodes.',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The primary identifier for a node.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'first' => array(
+        'description' => 'The current {node_revision}.vid version identifier.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'last' => array(
+        'description' => 'The {node_type} of this node.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'email' => array(
+        'description' => 'The title of this node, always treated as non-markup plain text.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'pass' => array(
+        'description' => 'The title of this node, always treated as non-markup plain text.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'indexes' => array(
+      'custom_form_one_first' => array(
+        'first',
+      ),
+    ),
+    'primary key' => array(
+      'nid',
+    ),
+  );
+  return $schema;
+}

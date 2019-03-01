@@ -1,0 +1,65 @@
+    <?php
+    /**
+     * Implements hook_menu()
+     */
+    function form_custom_menu() {
+        $items = array();
+
+        $items['form_custom'] = array( 
+    'title' => 'Custom Form', 
+    'description' => 'A modular custom form.',
+    'page callback' => 'drupal_get_form', 
+    'page arguments' => array('form_custom_form'), 
+    'access callback' => TRUE
+  );
+      	
+    	return $items;
+    }
+     
+    /**
+     * Implements hook_form()
+     */
+    function form_custom_form($form, &$form_state) {
+    	$form['first_name'] = array(
+    		'#title' => t('First Name'),
+    		'#description' => t('The person\'s first name.'),
+    		'#type' => 'textfield',
+    		'#required' => TRUE,
+    	);
+     
+    	$form['middle_name'] = array(
+    		'#title' => t('Middle Name'),
+    		'#description' => t('The person\'s middle name.'),
+    		'#type' => 'textfield',
+    		'#required' => TRUE,
+    	);
+     
+    	$form['last_name'] = array(
+    		'#title' => t('Last Name'),
+    		'#description' => t('The person\'s last name.'),
+    		'#type' => 'textfield',
+    		'#required' => TRUE,
+    	);
+     
+    	$form['submit'] = array(
+      		'#type' => 'submit',
+      		'#value' => t('Save Person'),
+    	);
+    	
+    	return $form;
+    }
+     
+    function form_custom_form_validate($form, &$form_state) {
+    	// Any form validation goes here like ensuring we have only alpha characters
+    }
+     
+    function form_custom_form_submit($form, &$form_state) {
+    	// Here is where you use the insert the data into your table
+    	db_insert('form_custom_data') 
+    		->fields(array(  
+    			'first_name' => $form_state['values']['first_name'],  
+    			'middle_name' => $form_state['values']['middle_name'],  
+    			'last_name' => $form_state['values']['last_name'],
+    		))
+    		->execute();
+    }

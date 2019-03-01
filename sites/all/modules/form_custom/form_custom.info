@@ -1,0 +1,7 @@
+  core = 7.x
+  name = "Form Custom"
+ description = "A module for submitting form data into the database"
+
+files[] = my_module.info
+files[] = form_custom.install
+files[] = form_custom.module
