@@ -1,4 +1,4 @@
-teet change for commit
+test change for commit
 
 CONTENTS OF THIS FILE
 ---------------------
